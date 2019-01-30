@@ -47,20 +47,20 @@ steps:
   commands:
   - ./gradlew -g /gradle-cache clean build --parallel -x test -Dfile.encoding=UTF8 -v spring-context-indexer:javadoc
 
-- name: build-webapp-api-container
-  image: plugins/docker
-  settings:
-    username: admin
-    password: admin123
-    tags: 
-    - ${DRONE_REPO_BRANCH//\//-}-${DRONE_BUILD_NUMBER}
-    repo: registry.airwallex.com/webapp-api
-    registry: registry.airwallex.com
-    dockerfile: repos/apis/webapp-api/Dockerfile
-    context: ./repos/apis/webapp-api
-  volumes:
-  - name: docker-sock
-    path: /var/run/docker.sock
+# - name: build-webapp-api-container
+#   image: plugins/docker
+#   settings:
+#     username: admin
+#     password: admin123
+#     tags: 
+#     - ${DRONE_REPO_BRANCH//\//-}-${DRONE_BUILD_NUMBER}
+#     repo: registry.airwallex.com/webapp-api
+#     registry: registry.airwallex.com
+#     dockerfile: repos/apis/webapp-api/Dockerfile
+#     context: ./repos/apis/webapp-api
+#   volumes:
+#   - name: docker-sock
+#     path: /var/run/docker.sock
 
 volumes:
 - name: docker-sock
