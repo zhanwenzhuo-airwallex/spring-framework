@@ -17,3 +17,14 @@ pipeline:
     author: ${DRONE_COMMIT_AUTHOR}
     when:
       status:  [ failure, success ]
+
+volumes:
+  - name: docker-sock
+    host:
+      path: /var/run/docker.sock
+  - name: gradle-cache
+    host:
+      path: /Storage/Gradle-Cache
+  - name: root-m2
+    host:
+      path: /Storage/Maven-Cache
