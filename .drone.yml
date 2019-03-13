@@ -1,7 +1,6 @@
 kind: pipeline
 name: spring-framework
 
-steps:
   clone:
     image: peterdavehello/cdnjs-drone-ci
     sparseCheckout: tools/sparse-checkout.template
