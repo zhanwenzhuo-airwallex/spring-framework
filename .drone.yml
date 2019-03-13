@@ -2,31 +2,11 @@ kind: pipeline
 name: spring-framework
 
 steps:
-
-  - name: notify-build-started
-    image: plugins/slack
-    settings:
-      webhook:
-        from_secret: slack_webhook
-      channel: rails-prod-monitor
-      username: drone
-      icon_emoji: ":drone-ci:"
-      link_names: true
-      template: "Repository: *<${DRONE_REPO_LINK}|${DRONE_REPO_NAME}>* \n
-        Branch: *<https://github.com/{{ repo.owner }}/{{ repo.name }}/tree/{{ build.branch }}|{{ build.branch }}>* \n
-        Author: *<${DRONE_COMMIT_AUTHOR_EMAIL}|${DRONE_COMMIT_AUTHOR}>* \n
-        Commit: *<${DRONE_COMMIT_LINK}|${DRONE_COMMIT_MESSAGE}>* \n
-        Status: *started*"
+  clone:
+    image: peterdavehello/cdnjs-drone-ci
+    sparseCheckout: tools/sparse-checkout.template
+  bot-review:
+    image: peterdavehello/drone-github-status-report-bot:latest
     when:
-      status:  [ failure, success ]
-
-volumes:
-  - name: docker-sock
-    host:
-      path: /var/run/docker.sock
-  - name: gradle-cache
-    host:
-      path: /Storage/Gradle-Cache
-  - name: root-m2
-    host:
-      path: /Storage/Maven-Cache
+      event: pull_request
+      status: [ success, failure ]
