@@ -2,7 +2,7 @@ kind: pipeline
 name: spring-framework
 
 steps:
-  - name: notify-build-started:
+  - name: notify-build-started
     image: registry.airwallex.com/airwallex-buildbot:latest
     settings:
       channel: global-drone-builds
