@@ -1,6 +1,5 @@
-workspace:
-  base: /opt
-  path: order_collection
+kind: pipeline
+name: spring-framework
 
 pipeline:
   docker-info:
