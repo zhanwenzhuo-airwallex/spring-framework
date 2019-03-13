@@ -1,11 +1,15 @@
 kind: pipeline
 name: spring-framework
 
-  clone:
-    image: peterdavehello/cdnjs-drone-ci
-    sparseCheckout: tools/sparse-checkout.template
-  bot-review:
-    image: peterdavehello/drone-github-status-report-bot:latest
-    when:
-      event: pull_request
-      status: [ success, failure ]
+steps:
+- name: slack
+  image: plugins/slack
+  settings:
+    webhook: https://hooks.slack.com/services/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
+    channel: rails-prod-monitor
+    template: >
+      {{#success build.status}}
+        build {{build.number}} succeeded. Good job.
+      {{else}}
+        build {{build.number}} failed. Fix me please.
+      {{/success}}
