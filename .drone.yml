@@ -1,14 +1,7 @@
 kind: pipeline
 name: spring-framework
 
-pipeline:
-  docker-info:
-    docker:
-    image: registry.airwallex.com/drone-docker
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    commands:
-      - docker info
+steps:
 
   notify-build-started:
     image: registry.airwallex.com/airwallex-buildbot:latest
