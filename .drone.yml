@@ -2,14 +2,14 @@ kind: pipeline
 name: spring-framework
 
 steps:
-  -name: notify-build-started:
-   image: registry.airwallex.com/airwallex-buildbot:latest
-   settings:
-     channel: global-drone-builds
-     position: PreBuild
-     author: ${DRONE_COMMIT_AUTHOR}
-   when:
-     status:  [ failure, success ]
+  - name: notify-build-started:
+    image: registry.airwallex.com/airwallex-buildbot:latest
+    settings:
+      channel: global-drone-builds
+      position: PreBuild
+      author: ${DRONE_COMMIT_AUTHOR}
+    when:
+      status:  [ failure, success ]
 
 volumes:
   - name: docker-sock
