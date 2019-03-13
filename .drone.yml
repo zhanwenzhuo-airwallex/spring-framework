@@ -14,7 +14,7 @@ steps:
   
   notify-build-started:
     image: registry.airwallex.com/airwallex-buildbot:latest
-	settings:
+  settings:
       channel: global-drone-builds
       position: PreBuild
       author: ${DRONE_COMMIT_AUTHOR}
