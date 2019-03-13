@@ -2,20 +2,20 @@ kind: pipeline
 name: spring-framework
 
 steps:
- - name: notify-build-started
-   image: plugins/slack:1
-   pull: always
-   settings:
-     webhook: https://hooks.slack.com/services/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
-     channel: rails-prod-monitor
-
+- name: notify-build-started
+  image: plugins/slack
+  pull: always
+  settings:
+    webhook: https://hooks.slack.com/services/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
+    channel: rails-prod-monitor
+    
 volumes:
-  - name: docker-sock
-    host:
-      path: /var/run/docker.sock
-  - name: gradle-cache
-    host:
-      path: /Storage/Gradle-Cache
-  - name: root-m2
-    host:
-      path: /Storage/Maven-Cache
+- name: docker-sock
+  host:
+    path: /var/run/docker.sock
+- name: gradle-cache
+  host:
+    path: /Storage/Gradle-Cache
+- name: root-m2
+  host:
+    path: /Storage/Maven-Cache
