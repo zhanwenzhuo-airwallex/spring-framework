@@ -2,11 +2,12 @@ kind: pipeline
 name: spring-framework
 
 steps:
-  - name: notify-build-started
-    image: registry.airwallex.com/airwallex-buildbot:latest
-    settings:
-      channel: global-drone-builds
-      position: PreBuild
+ - name: notify-build-started
+   image: plugins/slack:1
+   pull: always
+   settings:
+     webhook: https://hooks.slack.com/services/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
+     channel: rails-prod-monitor
 
 volumes:
   - name: docker-sock
