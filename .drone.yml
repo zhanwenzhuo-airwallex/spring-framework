@@ -7,9 +7,6 @@ steps:
     settings:
       channel: global-drone-builds
       position: PreBuild
-      author: ${DRONE_COMMIT_AUTHOR}
-    when:
-      status:  [ failure, success ]
 
 volumes:
   - name: docker-sock
