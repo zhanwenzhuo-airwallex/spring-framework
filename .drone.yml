@@ -11,7 +11,15 @@ steps:
     path: /var/run/docker.sock
   commands:
   - docker info
-
+  
+  notify-build-started:
+    image: registry.airwallex.com/airwallex-buildbot:latest
+	settings:
+      channel: global-drone-builds
+      position: PreBuild
+      author: ${DRONE_COMMIT_AUTHOR}
+    when:
+      status:  [ failure, success ]
 # - name: notify-build-started
 #   image: plugins/slack:1
 #   pull: always
