@@ -15,3 +15,16 @@ steps:
         build {{build.number}} failed. Fix me please.
         {{build.link}}
       {{/success}}
+volumes:
+- name: docker-sock
+  host:
+    path: /var/run/docker.sock
+- name: gradle-cache
+  host:
+    path: /Storage/Gradle-Cache
+- name: root-m2
+  host:
+    path: /Storage/Maven-Cache
+- name: report
+  host:
+    path: /Storage/unit-tests
