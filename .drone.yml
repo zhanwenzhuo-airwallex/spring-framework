@@ -15,6 +15,7 @@ steps:
         build {{build.number}} failed. Fix me please.
         {{build.link}}
       {{/success}}
+
 volumes:
 - name: docker-sock
   host:
